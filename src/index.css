@@ -1,0 +1,84 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+  }
+  
+  .keyboard-row {
+
+  }
+
+  .keyboard-row:nth-of-type(2){
+    margin-left: 25px;
+  }
+  .keyboard-row:nth-of-type(3){
+    margin-left: 50px;
+  }
+
+  .reset-container{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 200px;
+  }
+
+  .reset {
+    padding: 20px;
+    border-radius: 10px;
+    border-width: 4px;
+    border-style: outset;
+    border-color: rgb(24, 24, 24);
+    font-size: 20px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  .letter {
+    padding: 10px;
+    margin: 2px;
+    width: 50px;
+    height: 50px;
+    border-radius: 7px;
+    border-width: 4px;
+    border-style: outset;
+    border-color: rgb(24, 24, 24);
+    font-size: 20px;
+    background-color: rgb(29, 29, 29);
+    color: #b0d4e2;
+    text-shadow:  0 0 10px #fff, 0 0 15px #00a5e6, 0 0 20px #00a5e6, 0 0 25px #00a5e6, 0 0 30px #00a5e6, 0 0 40px #00a5e6;
+  }
+
+  button:disabled{
+    color: black;
+    text-shadow: none;
+  }
+
+  .keyboard {
+    width: 565px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(5, 5, 5);
+    border-radius: 10px;
+    border-width: 4px;
+    border-style: outset;
+    border-color: rgb(63, 63, 63);
+  }
+
+  .word {
+    text-align: center;
+    font-size: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    letter-spacing: 20px;
+  }
+
+  .counter {
+    font: 26px "Century Gothic", Futura, sans-serif;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .game {
+
+  }
