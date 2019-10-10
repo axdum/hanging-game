@@ -78,6 +78,14 @@ body {
     text-align: center;
     padding: 10px;
   }
+
+  .img-container {
+    text-align: center;
+  }
+
+  .img-container img{
+    width: 200px;
+  }
   
   .game {
 

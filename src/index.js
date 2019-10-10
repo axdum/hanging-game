@@ -8,30 +8,52 @@ class Game extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            reset: false,// partie finie ?
-            word: generateRandomWord(),// Mot à trouver
-            usedLetters: new Set([]),// Lettres utilisées
-            score: 0// Score
+            reset: false, // partie finie ?
+            word: generateRandomWord(), // Mot à trouver
+            usedLetters: new Set([]), // Lettres utilisées
+            score: 0, // Score
+            counter:0 // nb essais
         }
         this.letters = ['A', 'Z', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Q', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'W', 'X', 'C', 'V', 'B', 'N'];
     }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.escFunction, false);
+        }
+
+    componentWillUnmount(){
+    document.removeEventListener("keydown", this.escFunction, false);
+    }
+
+    // Arrow fx for binding
+    escFunction = (event) => {
+        const keycode = event.keyCode;
+        console.log(this.state.counter);
+        if(keycode < 91 && keycode > 64 && !this.state.reset) {// si lettre de l'alphabet
+            this.handleClick(this.letters.indexOf(String.fromCharCode(keycode)));
+        }
+    }
+
+
 
     // Clic sur une touche du clavier
     handleClick(i) {
         const word = this.state.word;
         let usedLetters = new Set(this.state.usedLetters);
-        let score = this.state.score;
+        let { score, counter } = this.state;
+        counter++;
         if(word.includes(this.letters[i]) && !usedLetters.has(this.letters[i])) {// SI nouvelle lettre trouvée
             score += 2;
         }else{
             score--;
         }
         usedLetters.add(this.letters[i]); // Ajout de la lettre aux lettres utilisées
-        const reset = isFound(word, usedLetters); // Mot découvert en entier ?
+        const reset = isFound(word, usedLetters) || counter == 6; // Mot découvert en entier ?
         this.setState({
             usedLetters: usedLetters,
             reset: reset,
-            score: score
+            score: score,
+            counter: counter
         });
     }
 
@@ -41,12 +63,13 @@ class Game extends React.Component {
             reset: false,
             word: generateRandomWord(),
             usedLetters: new Set([]),
-            score: 0
+            score: 0,
+            counter: 0
         });
     }
 
     render() {
-        const { word, usedLetters, reset, score } = this.state; 
+        const { word, usedLetters, reset, score, counter } = this.state; 
         const display = computeDisplay(word, usedLetters);
         return (
             <div className="game">
@@ -62,6 +85,9 @@ class Game extends React.Component {
                 />
                 <Counter
                     score={score}
+                />
+                <Image
+                    counter={counter}
                 />
             </div>);
     }
@@ -124,11 +150,20 @@ class Keyboard extends React.Component {
 function Letter(props) {
     return (
         <button disabled={props.used} className="letter" onClick={props.onClick}>{props.value}</button>
-    )
+    );
 }
 
 function Counter(props) {
     return <div className="counter">Score: {props.score}</div>;
+}
+
+function Image(props) {
+    const source = 'img/' + props.counter + '.png'
+    return (
+        <div className="img-container">
+            <img src={source} alt="Viewer" />;
+        </div>
+    );
 }
 
 ReactDOM.render(
